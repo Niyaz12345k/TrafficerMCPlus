@@ -1,0 +1,24 @@
+Build
+This is a guide for those who wanna build or run it with the source code.
+
+You need to download NodeJs before following the steps.
+
+Open Powershell or Terminal in a folder
+
+1 git clone https://github.com/RattlesHyper/TrafficerMC
+
+2 npm install
+
+3 npm start
+
+Build commands.
+
+npm run <option> builds and puts the build in /dist folder
+
+winx64 for Windows x64
+
+winx86 for Windows x86
+
+linux64 for linux x64
+
+linux86 for linux x86
