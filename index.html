@@ -143,6 +143,7 @@
                      <button class="button" data-target=".setHotbatSlot">Set hotbar slot</button>
                      <button class="button" data-target=".clickWindow">Click window</button>
                      <button class="button" data-target=".moveDirection">Control move</button>
+                     <button class="button" data-target=".followPlayer">Follow Player</button>
                      <button class="button" data-target=".look">Look</button>
                      <button class="button" data-target=".drop">Drop</button>
                      <button class="button" data-target=".antiafk">Anti-AFK</button>
@@ -266,6 +267,22 @@
                         <div class="input-group mu-4">
                            <button id="startControl" class="button">Start</button>
                            <button id="stopControl" class="button">Stop</button>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="followPlayer" class="followPlayer functsBtn" style="display:none">
+                     <div class="input-group flex-colum center-elements">
+                        <div>
+                           <span class="label">
+                           <label class="label-text">Follow Player</label>
+                           </span>
+                        </div>
+                        <div class="input-group flex-colum">
+                           <input id="followTargetPlayer" class="input" type="text" placeholder="Player Name">
+                        </div>
+                        <div class="input-group mu-4">
+                           <button id="startFollow" class="button">Start</button>
+                           <button id="stopFollow" class="button">Stop</button>
                         </div>
                      </div>
                   </div>
