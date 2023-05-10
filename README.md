@@ -1,3 +1,7 @@
+This is a better version of TrafficerMC with more features, so far we got the following extras:
+- Follow Player
+- 1.19.4 Support!
+
 # TrafficerMC
 ## A Minecraft botting tool with Anti-AFK, Chat spammer, Inventory/Chest manager features.
 
