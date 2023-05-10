@@ -44,6 +44,9 @@ let idBtnWinClick = document.getElementById('btnWindowClick')
 let idControlValue = document.getElementById('controlValue')
 let idControlStart = document.getElementById('startControl')
 let idControlStop = document.getElementById('stopControl')
+let idFollowTarget = document.getElementById('followTargetPlayer')
+let idFollowStart = document.getElementById('startFollow')
+let idFollowStop = document.getElementById('stopFollow')
 let idLookValue = document.getElementById('lookValue')
 let idBtnLookAt = document.getElementById('setLook')
 let idCheckSprint = document.getElementById('checkboxSprint')
@@ -95,6 +98,8 @@ window.addEventListener('DOMContentLoaded', () => {
     idBtnWinClick.addEventListener('click', () => {exeAll("winclick", idBtnWinClickSlot.value, idClickWinLoR.value)})
     idControlStart.addEventListener('click', () => {exeAll("startcontrol", idControlValue.value)})
     idControlStop.addEventListener('click', () => {exeAll("stopcontrol", idControlValue.value)})
+    idFollowStart.addEventListener('click', () => {exeAll("startfollow", idFollowTarget.value)})
+    idFollowStop.addEventListener('click', () => {exeAll("stopfollow", idFollowTarget.value)})
     idBtnLookAt.addEventListener('click', () => {exeAll("look", idLookValue.value)})
     idCheckSprint.addEventListener('click', () => {exeAll("sprintcheck", idCheckSprint.checked)})
     idBtnDrop.addEventListener('click', () => {exeAll("drop", idDropValue.value)})
@@ -227,6 +232,36 @@ async function newBot(options) {
         bot.setControlState(o, true)
         if(idCheckSprint.checked === true) {bot.setControlState('sprint', true)} else {bot.setControlState('sprint', false)}
     })
+    
+    botApi.on(options.username + 'startfollow', (o) => {
+        // Get the target player's entity object
+        const target = bot.players[o]?.entity;
+
+        // If the target player is not online or no entity object was found, exit
+        if (!target) {
+          sendLog(`[${options.username} Warn] I don't see "${o}" online.`)
+          return;
+        }
+
+        // Follow the target player
+        bot.chat(`Following "${o}"...`);
+        bot.follow(target, {
+          // Set a reasonable follow range
+          radius: 3,
+          // Keep some distance behind the target
+          yawCorrections: 1,
+          // Don't stop following if the target gets too far away
+          stayClose: false
+        });
+
+        // Check if the bot should sprint while following
+        if (idCheckSprint.checked === true) {
+          bot.setControlState('sprint', true);
+        } else {
+          bot.setControlState('sprint', false);
+        }
+    });
+
 
     idBtnRc.addEventListener('click', () => {botApi.emit(options.username+'reconnect')})
 
